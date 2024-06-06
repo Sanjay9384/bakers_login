@@ -1,8 +1,10 @@
 <html>
 <head>
 <title>Bakers Delight Login</title>
-<link rel="stylesheet"  href="css/Bakerslogin.css">
-<link rel="icon" href="Assets/logos/mainlogo2.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"  href="css/Bakerslogin2.css">
+<link rel="icon" href="images/loginimages/mainlogo2.jpg">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -11,39 +13,33 @@
   <div class="hero">
     <div class="form-box">
       <div class="button-box">
-      <div id="btn"></div>
-      <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-      <button type="button" class="toggle-btn" onclick="register()">Register</button>
+        <div id="btn"></div>
+        <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+        <button type="button" class="toggle-btn" onclick="register()">Register</button>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/" target="_blank"><img src="images/loginimages/facebook.webp"></a>
+        <a href="https://www.instagram.com/" target="_blank"><img src="images/loginimages/instagram.webp"></a>
+        <a href="https://mail.google.com/mail/u/0/" target="_blank"><img src="images/loginimages/mail.webp"></a>
+      </div>
+      <form id="login" class="input-group" onsubmit="func(event)">
+        <input type="text" class="input-field" id="email" placeholder="User Id">
+        <input type="password" class="input-field" id="password" placeholder="Enter Password">
+        <input type="checkbox" class="check-box"><span class="rem">Remember Password</span>
+        <button type="submit" class="submit-btn">Log in</button>
+      </form>
+      <form id="register" class="input-group" onsubmit="func(event)">
+        <input type="text" class="input-field" placeholder="User Id" required>
+        <input type="email" class="input-field" placeholder="Email Id" required>
+        <input type="password" class="input-field" placeholder="Enter Password" required>
+        <input type="checkbox" class="check-box"><span>I agree to the terms & conditions</span>
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
     </div>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/" target="_blank"><img src="images/loginimages/facebook.webp"></a>
-      <a href="https://www.instagram.com/" target="_blank"><img src="images/loginimages/instagram.webp"></a>
-      <a href="https://mail.google.com/mail/u/0/" target="_blank"><img src="images/loginimages/mail.webp"></a>
-      
-    </div>
-    <form id="login" class="input-group">
-    <input type="text" class="input-field" id="email" placeholder="User Id" >
-    <input type="password" class="input-field" id="password" placeholder="Enter Password" >
-    <input type="checkbox" class="chech-box"><span>Remember Password</span>
-    <button type="submit" class="submit-btn" onclick="func()">Log in</a></button>
-
-    </form>
-    <form id="register" class="input-group">
-    <input type="text" class="input-field" placeholder="User Id" required>
-    <input type="email" class="input-field" placeholder="Email Id" required>
-    <input type="text" class="input-field" placeholder="Enter Password" required>
-    <input type="checkbox" class="chech-box"><span>I agree to the terms & conditions</span>
-    <button type="submit" class="submit-btn" onclick="
-    ">Register</button>
-
-    </form>
-    </div>
-
-
     <footer>
       <center>
-     <p class="rights" id="rightsText">  &#169; All rights reserved & designed by <a href="#">SP developers</a> </p>
-     </center>
+        <p class="rights" id="rightsText"> &#169; All rights reserved & designed by <a href="#">SP developers</a> </p>
+      </center>
     </footer>
   </div>
 
@@ -52,53 +48,55 @@
     var y = document.getElementById("register");
     var z = document.getElementById("btn");
 
-    function register(){
+    function register() {
       x.style.left = "-400px";
       y.style.left = "50px";
       z.style.left = "110px";
-
     }
-    function login(){
+
+    function login() {
       x.style.left = "50px";
       y.style.left = "450px";
       z.style.left = "0";
-
     }
 
-
-    function func(){
+    function func(event) {
+      event.preventDefault();
       var email = document.getElementById("email").value;
-      var password=document.getElementById("password").value;
+      var password = document.getElementById("password").value;
 
-      if(email== "bakersdelight@gmail.com" && password=="bakersdelight123")
-      {
-          window.open('index.html');
-
-      }
-      else{
-        alert("Invalid Information");
+      if (email === "bd@gmail.com" && password === "bd123") {
+        Swal.fire({
+          icon: 'success',
+          title: 'Loading Bakers Delight...',
+          timer: 2000,
+          timerProgressBar: true,
+          didClose: () => {
+            window.open('https://sweetalert2.github.io/#', '_blank');
+          }
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Information',
+          text: 'The user ID or password you entered is incorrect.',
+          confirmButtonText: 'OK'
+        });
         return;
       }
-
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get reference to the rights paragraph
-        const rightsText = document.getElementById('rightsText');
-
-        // Add event listener to the paragraph
-        rightsText.addEventListener('click', function() {
-            // Display SweetAlert2 pop-up for contact information
-            Swal.fire({
-                icon: 'info',
-                title: 'SP_DEVELOPERS',
-                text: 'For inquiries, please contact SP developers at SP_DEVLOPERS@gmail.com.',
-                confirmButtonText: 'OK'
-            });
+    document.addEventListener('DOMContentLoaded', function () {
+      const rightsText = document.getElementById('rightsText');
+      rightsText.addEventListener('click', function () {
+        Swal.fire({
+          icon: 'info',
+          title: 'SP_DEVELOPERS',
+          text: 'For inquiries, please contact SP developers at SP_DEVLOPERS@gmail.com.',
+          confirmButtonText: 'OK'
         });
+      });
     });
-
   </script>
-  
 </body>
 </html>
